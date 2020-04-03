@@ -64,14 +64,14 @@ def shortest_path_optmized(start, end):
                 #print(rubik.quarter_twists_names[i])
                 q1.append(p1)
                 if(visited2.has_key(p1)==True):
-                    return path1[p1]+path2[p1][::-1]
+                    return path1[p1]+path2[p1]
             if(visited2.has_key(p2)==False):
                 visited2[p2]=1
-                path2[p2] = path2[curr2]+[rubik.quarter_twists_names[i]]
+                path2[p2] = path2[curr2]+[rubik.quarter_twists_names[rubik.perm_inverse(i)]]
                 #print(rubik.quarter_twists_names[i])
                 q2.append(p2)
                 if(visited1.has_key(p2)==True):
-                    return path1[p2]+path2[p2][::-1]
+                    return path1[p2]+path2[p2]
         
     return []
     """
