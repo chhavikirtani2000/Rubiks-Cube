@@ -57,7 +57,6 @@ def shortest_path_optmized(start, end):
         q2.popleft()
         for i in rubik.quarter_twists:
             p1 = rubik.perm_apply(curr1,i)
-            p2 = rubik.perm_apply(curr2,i)
             if(visited1.has_key(p1)==False):
                 visited1[p1]=1
                 path1[p1] = path1[curr1]+[rubik.quarter_twists_names[i]]
@@ -65,9 +64,11 @@ def shortest_path_optmized(start, end):
                 q1.append(p1)
                 if(visited2.has_key(p1)==True):
                     return path1[p1]+path2[p1]
+        for i in rubik.quarter_twists:
+            p2 = rubik.perm_apply(curr2,i)
             if(visited2.has_key(p2)==False):
                 visited2[p2]=1
-                path2[p2] = path2[curr2]+[rubik.quarter_twists_names[rubik.perm_inverse(i)]]
+                path2[p2] = [rubik.quarter_twists_names[rubik.perm_inverse(i)]]+path2[curr2]
                 #print(rubik.quarter_twists_names[i])
                 q2.append(p2)
                 if(visited1.has_key(p2)==True):
@@ -96,4 +97,3 @@ print("--- %s seconds ---" % (time.time() - start_time))
 start_time = time.time()
 print(shortest_path_optmized(start, end))
 print("--- %s seconds ---" % (time.time() - start_time))
-
