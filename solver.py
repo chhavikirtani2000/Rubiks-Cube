@@ -26,7 +26,7 @@ def shortest_path(start, end):
             if(visited.has_key(p)==False):
                 visited[p]=1
                 path[p] = path[curr]+[rubik.quarter_twists_names[i]]
-                print(rubik.quarter_twists_names[i])
+                #print(rubik.quarter_twists_names[i])
                 q.append(p)
                 if(p==end):
                     return path[p]
